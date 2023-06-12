@@ -1,4 +1,5 @@
 module.exports = function toReadable (number) {
+    const toReadable = (number) => {
   const numberObj = {
     0: "zero",
     1: "one",
@@ -22,18 +23,18 @@ module.exports = function toReadable (number) {
     19: "nineteen",
     20: "twenty",
     30: "thirty",
-    40: "fourty",
+    40: "forty",
     50: "fifty",
     60: "sixty",
     70: "seventy",
     80: "eighty",
     90: "ninety",
-    100: "hundred",
   }
   if (number in numberObj) {
     return numberObj[number];
   }
-//   else {
-//     return number;
-//   }
+  if (number < 100) return numberObj[Math.floor(number / 10) * 10] + (number % 10 ? ' ' + toReadable(number % 10) : ''); 
+  if (number < 1000) return numberObj[Math.floor(number / 100)] + ' hundred' + (number % 100 ? ' ' + toReadable(number % 100) : '');
+}
+return toReadable(number);
 }
